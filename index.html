@@ -138,31 +138,57 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
 
   <style>
     /* Paleta Oficial do Senac */
-    :root {
-      --accent: #004a8f;          /* Azul escuro institucional Senac */
-      --accent-text: #003d7c;     /* Azul institucional para texto */
-      --accent-contrast: #FFFFFF; /* Contraste sobre azul */
-      --senac-blue: #004a8f;      /* Azul oficial */
-      --senac-blue-dark: #00366b; /* Azul escuro variante */
-      --senac-orange: #f39200;    /* Laranja institucional Senac */
-      --senac-orange-hover: #d97f00; /* Laranja hover */
-      --senac-orange-soft: #fff5e6;  /* Fundo sutil laranja */
-      --senac-blue-soft: #eaf2fb;    /* Fundo sutil azul */
-      --senac-orange-light: #fac896; /* Laranja claro */
-      --bg: #F8F9FA;              /* Fundo claro neutro */
-      --surface: #FFFFFF;
-      --surface-subtle: #F0F4F8;
-      --text: #1F2937;            /* Grafite escuro para leitura */
-      --text-muted: #4B5563;      /* Texto secundário */
-      --border: #E2E8F0;
-      --border-subtle: #CBD5E1;
-      --shadow-sm: 0 1px 3px rgba(0, 54, 107, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-      --shadow-md: 0 4px 14px rgba(0, 74, 143, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 10px 28px rgba(0, 74, 143, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-      --radius: 12px;
-      --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
-      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    }
+  :root {
+  /* --- Paleta "Pôr do Sol de Prudente" --- */
+  --pp-terracota: #C0562E;      /* sol poente - cor principal */
+  --pp-terracota-dark: #9E4423; /* terracota escuro - hover */
+  --pp-terracota-soft: #F6E4DA; /* fundo suave do destaque */
+
+  --pp-vinho: #6E2B4E;          /* crepúsculo - cor secundária */
+  --pp-vinho-dark: #592240;     /* vinho escuro - hover */
+  --pp-vinho-light: #A55C7D;    /* vinho claro - detalhes */
+  --pp-vinho-soft: #F3E4EB;     /* fundo suave do secundário */
+
+  --pp-verde: #3E5C46;          /* verde pinho (Parque do Povo) - acentos */
+  --pp-verde-dark: #2F4A37;
+
+  --pp-areia: #F4EBDD;          /* terra do interior - fundos */
+  --pp-noite: #3A2E24;          /* marrom noite - texto principal */
+
+  /* --- Compatibilidade: mesmo nome, novos valores --- */
+  --senac-blue: #C0562E;        /* era #004a8f */
+  --senac-blue-dark: #9E4423;   /* era #00366b */
+  --senac-blue-soft: #F6E4DA;   /* era #eaf2fb */
+
+  --senac-orange: #6E2B4E;      /* era #f39200 */
+  --senac-orange-hover: #592240;/* era #d97f00 */
+  --senac-orange-light: #A55C7D;/* era #fac896 */
+  --senac-orange-soft: #F3E4EB; /* era #fff5e6 */
+
+  /* --- Interface e texto --- */
+  --accent: var(--pp-terracota);
+  --accent-text: #8C3A18;
+  --accent-contrast: #FFFFFF;
+
+  --bg: #FBF7F1;
+  --surface: #FFFDF8;
+  --surface-subtle: var(--pp-areia);
+
+  --text: var(--pp-noite);
+  --text-muted: #6B5D4F;
+
+  --border: #E7DCCB;
+  --border-subtle: #D8CCB8;
+
+  /* --- Efeitos --- */
+  --shadow-sm: 0 1px 3px rgba(62, 92, 70, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 14px rgba(192, 86, 46, 0.10), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 28px rgba(110, 43, 78, 0.14), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+
+  --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
 
     html {
       scroll-behavior: smooth;
