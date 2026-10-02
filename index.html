@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memórias de Prudente: Resgate e Patrimônio Histórico</title>
+  
+  <!-- SEO & OpenGraph Meta Tags -->
+  <meta name="description" content="Projeto escolar dedicado à redescoberta e preservação da memória de 8 lugares históricos de Presidente Prudente, SP.">
+  <meta property="og:title" content="Memórias de Prudente: Patrimônio Histórico">
+  <meta property="og:description" content="Conheça 8 lugares emblemáticos de Presidente Prudente, jogue o game da memória e participe do questionário.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B85732'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+
+  <!-- Basecoat CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
+  
+  <!-- Shell CSS -->
+  <style>
+/* Skip artifact shell — fixed styles served beside every artifact.
+   Complements basecoat; artifacts override --accent for their own identity. */
+:root {
+  color-scheme: light dark;
+  --accent: #2563eb;
+  --accent-contrast: #ffffff;
+  --accent-text: color-mix(in srgb, var(--accent) 72%, #000);
+  --bg: #f8f9fb;
+  --surface: #ffffff;
+  --text: #14171f;
+  --text-muted: #5b6472;
+  --border: rgba(20, 23, 31, 0.10);
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(20, 23, 31, 0.08);
+  --space: 16px;
+}
+/* Theme resolution. Without data-theme the viewer's system preference decides,
+   as it always did. With it, the artifact's own choice wins in BOTH directions:
+   a page that hardcodes one palette must not be handed the opposite set of
+   tokens by the machine it happens to be opened on. The dark values appear
+   twice because a media query cannot be folded into a selector list.
+   The attribute sits inside :where() so these blocks keep the specificity of a
+   bare :root — the page's own <style> is linked after this file and must go on
+   overriding any token it wants, exactly as it could before. */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --accent-text: color-mix(in srgb, var(--accent) 78%, #fff);
+    --bg: #101318;
+    --surface: #181c23;
+    --text: #eef1f6;
+    --text-muted: #9aa4b2;
+    --border: rgba(238, 241, 246, 0.12);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+:root:where([data-theme="dark"]) {
+  color-scheme: dark;
+  --accent-text: color-mix(in srgb, var(--accent) 78%, #fff);
+  --bg: #101318;
+  --surface: #181c23;
+  --text: #eef1f6;
+  --text-muted: #9aa4b2;
+  --border: rgba(238, 241, 246, 0.12);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+:root:where([data-theme="light"]) { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+
+.shell-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.shell-section { padding: calc(var(--space) * 2) 0; }
+.shell-grid { display: grid; gap: var(--space); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.shell-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: var(--space); }
+.shell-footer { padding: 24px 0 40px; color: var(--text-muted); font-size: 13px; }
+
+.shell-hero { padding: calc(var(--space) * 3) 0 calc(var(--space) * 2); }
+.shell-hero h1 { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; }
+.shell-hero p { color: var(--text-muted); max-width: 60ch; margin: 0; }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space);
+}
+
+.kpi { display: flex; flex-direction: column; gap: 4px; }
+.kpi .kpi-value { font-size: 28px; font-weight: 650; line-height: 1.1; }
+.kpi .kpi-label { font-size: 13px; color: var(--text-muted); }
+.kpi .kpi-delta { font-size: 12.5px; font-weight: 600; }
+.kpi .kpi-delta.up { color: #0a8f3c; }
+.kpi .kpi-delta.down { color: #cf3131; }
+
+table.shell-table { border-collapse: collapse; width: 100%; font-size: 14px; }
+table.shell-table th {
+  text-align: left; font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 600;
+}
+table.shell-table th, table.shell-table td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--border); }
+table.shell-table td.num, table.shell-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+.chart-box { width: 100%; min-height: 220px; }
+.chart-box svg { width: 100%; height: auto; display: block; }
+
+.muted { color: var(--text-muted); }
+.accent { color: var(--accent-text); }
+.shell-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shell-fade { animation: shell-fade 400ms ease both; }
+  @keyframes shell-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+
+</style>
+  
+  <!-- Google Fonts: Montserrat & Inter (Identidade Institucional Senac) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shell JS -->
+  
+
+  <style>
+    /* Paleta Oficial do Senac */
+    :root {
+      --accent: #004a8f;          /* Azul escuro institucional Senac */
+      --accent-text: #003d7c;     /* Azul institucional para texto */
+      --accent-contrast: #FFFFFF; /* Contraste sobre azul */
+      --senac-blue: #004a8f;      /* Azul oficial */
+      --senac-blue-dark: #00366b; /* Azul escuro variante */
+      --senac-orange: #f39200;    /* Laranja institucional Senac */
+      --senac-orange-hover: #d97f00; /* Laranja hover */
+      --senac-orange-soft: #fff5e6;  /* Fundo sutil laranja */
+      --senac-blue-soft: #eaf2fb;    /* Fundo sutil azul */
+      --senac-orange-light: #fac896; /* Laranja claro */
+      --bg: #F8F9FA;              /* Fundo claro neutro */
+      --surface: #FFFFFF;
+      --surface-subtle: #F0F4F8;
+      --text: #1F2937;            /* Grafite escuro para leitura */
+      --text-muted: #4B5563;      /* Texto secundário */
+      --border: #E2E8F0;
+      --border-subtle: #CBD5E1;
+      --shadow-sm: 0 1px 3px rgba(0, 54, 107, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 4px 14px rgba(0, 74, 143, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 28px rgba(0, 74, 143, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+      --radius: 12px;
+      --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Fundo da página inteira com foto aérea urbana desfocada (blur) e overlay translúcido */
+    body {
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      background-color: #f1f5f9;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Camada de fundo fixo com a foto aérea urbana estável e desfoque sutil */
+    .site-bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url('https://generated-images.adapta.one/gilmarbachega%40gmail.com/01a09cb3-f217-7669-ba12-f1b7d92d74f2/2026-09-25T15-08-57-553Z_Original_user_intent_Tool_generated_image_directi.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      filter: blur(2px);
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    /* Camada overlay translúcida (opacidade 0.85) para garantir contraste e legibilidade */
+    .site-bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(248, 250, 252, 0.85);
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .site-bg-canvas {
+        background-attachment: scroll;
+      }
+    }
+
+    /* Faixa Institucional de Topo com Cores Senac */
+    .top-institutional-bar {
+      background: linear-gradient(90deg, #00366b 0%, #004a8f 65%, #f39200 100%);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .top-institutional-bar .dot-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--senac-orange);
+      display: inline-block;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Títulos em Montserrat com estilo corporativo Senac */
+    h1, h2, h3, .font-serif, .font-heading {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--senac-blue);
+      letter-spacing: -0.02em;
+    }
+
+    /* Estilização do Header Institucional com fundo branco para integrar a nova logo de forma limpa */
+    .site-header {
+      position: sticky;
+      top: 0px;
+      z-index: 1000;
+      background: #FFFFFF;
+      border-bottom: 2px solid var(--border);
+      transition: box-shadow 0.25s ease;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 1.25rem;
+    }
+
+    .brand-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    /* Nova logo oficial do Senac Presidente Prudente com fundo branco harmonizado ao cabeçalho */
+    .senac-header-logo {
+      height: 48px;
+      width: auto;
+      max-height: 48px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+      background-color: #FFFFFF;
+    }
+
+    .senac-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 1px 2px rgba(0, 74, 143, 0.08));
+    }
+
+    .brand-text-col {
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid var(--border);
+      padding-left: 0.85rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--senac-blue);
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-unit {
+      font-size: 0.78rem;
+      color: var(--senac-orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--senac-blue);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .site-header.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      background: #FFFFFF;
+    }
+
+    /* Hero Section com Identidade Senac e Fundo Translúcido Harmonizado */
+    .hero-section {
+      padding: 4.5rem 1.25rem 3.5rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(237, 244, 252, 0.85) 0%, rgba(248, 250, 252, 0.7) 80%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .hero-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Selo Institucional Senac no Hero */
+    .hero-unit-seal {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.5rem 1.25rem;
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-seal-logo {
+      height: 28px;
+      width: auto;
+      max-width: 90px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-seal-divider {
+      width: 1px;
+      height: 18px;
+      background-color: var(--border);
+    }
+
+    .hero-seal-text {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--senac-blue);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      line-height: 1.18;
+      margin: 0 0 1.25rem 0;
+      color: var(--senac-blue);
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 2.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-highlights {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--senac-blue);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      box-shadow: 0 1px 3px rgba(0, 74, 143, 0.06);
+    }
+
+    .hero-highlight-pill svg {
+      color: var(--senac-orange);
+      flex-shrink: 0;
+    }
+
+    /* Cards Grid Section */
+    .places-section {
+      padding: 4rem 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .place-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .place-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--senac-orange);
+    }
+
+    .place-card:active {
+      transform: translateY(-2px) scale(0.99);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background-color: var(--senac-blue-soft);
+      color: var(--senac-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background-color: var(--senac-blue-soft);
+      color: var(--senac-blue);
+    }
+
+    .place-title {
+      font-size: 1.35rem;
+      margin: 0 0 0.6rem 0;
+      line-height: 1.25;
+      color: var(--senac-blue);
+    }
+
+    .place-fact {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-place-info {
+      background-color: #FFFFFF;
+      color: var(--senac-blue);
+      border: 1.5px solid var(--senac-blue);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-place-info:hover {
+      background-color: var(--senac-blue);
+      color: #FFFFFF;
+    }
+
+    /* Modal de Explicacao */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(26, 23, 21, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 660px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      padding: 2rem;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.75rem;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .modal-body p {
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin: 0 0 1rem 0;
+    }
+
+    .modal-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-context-box {
+      background-color: var(--senac-blue-soft);
+      border-left: 4px solid var(--senac-orange);
+      padding: 0.85rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--senac-blue-dark);
+    }
+
+    .modal-counter {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--senac-blue);
+      background-color: var(--senac-blue-soft);
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .modal-footer {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .modal-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-modal-nav {
+      background-color: #FFFFFF;
+      color: var(--senac-blue);
+      border: 1.5px solid var(--border-subtle);
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .btn-modal-nav:hover:not(:disabled) {
+      background-color: var(--senac-blue-soft);
+      border-color: var(--senac-blue);
+    }
+
+    .btn-modal-nav:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Seções Interativas: Game e Questionário com Suavidade Sobre o Fundo */
+    .interactive-section {
+      padding: 4.5rem 1.25rem;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .interactive-section.alt-bg {
+      background: rgba(237, 243, 250, 0.85);
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .feature-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .feature-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--senac-blue);
+      background: var(--senac-blue-soft);
+      flex-shrink: 0;
+    }
+
+    .feature-card.alt-accent .feature-icon-badge {
+      background: var(--senac-orange-soft);
+      color: var(--senac-orange);
+    }
+
+    .feature-title {
+      margin: 0;
+      font-size: 1.85rem;
+      line-height: 1.2;
+      color: var(--senac-blue);
+    }
+
+    .feature-lead {
+      font-size: 1.15rem;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .feature-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .feature-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-large {
+      padding: 0.85rem 1.75rem;
+      font-size: 1.02rem;
+    }
+
+    /* Bloco destacado: Versão online do Game com cores Senac */
+    .online-game-banner {
+      background: var(--senac-orange-soft);
+      border: 2px dashed var(--senac-orange);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .online-game-banner h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.4rem;
+      color: var(--senac-blue);
+    }
+
+    .online-game-banner p {
+      margin: 0 0 1.25rem 0;
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .btn-game-highlight {
+      background-color: var(--senac-orange);
+      color: #FFFFFF;
+      font-size: 1.05rem;
+      padding: 0.85rem 1.85rem;
+      box-shadow: 0 4px 14px rgba(243, 146, 0, 0.35);
+      border: none;
+    }
+
+    .btn-game-highlight:hover {
+      background-color: var(--senac-orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(243, 146, 0, 0.45);
+      color: #FFFFFF;
+    }
+
+    /* Seção Equipe com Transparência Suave */
+    .team-section {
+      padding: 4.5rem 1.25rem;
+      background-color: rgba(248, 250, 252, 0.65);
+      border-top: 1px solid var(--border);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      max-width: 1200px;
+      margin: 2.5rem auto 0;
+    }
+
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: default;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-md);
+      border-color: var(--senac-blue);
+    }
+
+    .team-card:hover .team-avatar {
+      transform: scale(1.1) rotate(3deg);
+      border-color: var(--senac-orange);
+      background: linear-gradient(135deg, var(--senac-orange-soft), #fde1c3);
+    }
+
+    .team-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--senac-blue-soft), #d0e4f7);
+      color: var(--senac-blue);
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      border: 2px solid var(--border);
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .team-name {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--senac-blue);
+      margin: 0 0 0.35rem 0;
+      font-family: var(--font-heading);
+    }
+
+    .team-role {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .team-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--senac-blue);
+      background: var(--senac-blue-soft);
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    /* Seção Sobre o Trabalho com Fundo Harmonizado */
+    .student-section {
+      padding: 4.5rem 1.25rem;
+      background-color: rgba(237, 243, 250, 0.85);
+      border-top: 1px solid var(--border);
+    }
+
+    .student-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .info-item {
+      border-left: 3px solid var(--senac-orange);
+      padding-left: 0.85rem;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--senac-blue);
+    }
+
+    /* Rodapé Institucional Senac */
+    .site-footer {
+      background-color: var(--senac-blue);
+      color: #FFFFFF;
+      padding: 3.5rem 1.25rem 2.25rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 4px solid var(--senac-orange);
+    }
+
+    .footer-logo-wrapper {
+      background-color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .site-footer a {
+      color: var(--senac-orange-light);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Botões Padronizados Senac */
+    .btn-primary {
+      background-color: var(--senac-blue);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0, 74, 143, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: #00366b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 74, 143, 0.35);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-orange:active,
+    .btn-place-info:active,
+    .btn-game-highlight:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .btn-secondary {
+      background-color: #FFFFFF;
+      color: var(--senac-blue);
+      border: 1.5px solid var(--border-subtle);
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--senac-blue-soft);
+      border-color: var(--senac-blue);
+      color: var(--senac-blue);
+    }
+
+    .btn-orange {
+      background-color: var(--senac-orange);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(243, 146, 0, 0.3);
+    }
+
+    .btn-orange:hover {
+      background-color: var(--senac-orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(243, 146, 0, 0.4);
+      color: #FFFFFF;
+    }
+
+    .btn-ghost-danger {
+      background: transparent;
+      color: #9B2C2C;
+      border: 1px solid transparent;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-ghost-danger:hover {
+      background: #FDF2F2;
+      border-color: #FEB2B2;
+    }
+
+    /* Utility Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .shell-fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .shell-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Acessibilidade: Preferência por movimento reduzido */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .shell-fade {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .place-card:hover,
+      .team-card:hover,
+      .btn-primary:hover,
+      .btn-orange:hover,
+      .btn-secondary:hover {
+        transform: none !important;
+      }
+    }
+
+    /* Mobile Responsive tweaks */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding-top: 1rem;
+        gap: 0.75rem;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .header-cta-btn {
+        display: none;
+      }
+      .header-content {
+        flex-wrap: wrap;
+      }
+      .feature-card {
+        padding: 1.75rem 1.25rem;
+      }
+      .feature-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CAMADA DE FUNDO COM FOTO AÉREA BORRADA E OVERLAY DE CONTRASTE -->
+  <div class="site-bg-canvas" aria-hidden="true"></div>
+  <div class="site-bg-overlay" aria-hidden="true"></div>
+
+  <!-- FAIXA INSTITUCIONAL SUPERIOR -->
+  <aside class="top-institutional-bar" aria-label="Identificação do projeto">
+    <span class="dot-indicator" aria-hidden="true"></span>
+    <span>Projeto do Ano Letivo</span>
+  </aside>
+
+  <!-- 1. HEADER FIXO INSTITUCIONAL -->
+  <header class="site-header" id="site-header">
+    <div class="header-content">
+      <a href="#hero" class="brand-logo-group" aria-label="Memórias de Prudente, Página Inicial">
+        <!-- Nova versão oficial da logo Senac Presidente Prudente com fundo branco integrado -->
+        <img src="https://generated-images.adapta.one/gilmarbachega%40gmail.com/01a09cb3-f217-7669-ba12-f1b7d92d74f2/2026-09-26T23-02-40-650Z_Original_user_intent_Tool_generated_image_directi.png" alt="Senac Presidente Prudente" class="senac-header-logo">
+        <span class="brand-title">Memórias de Prudente</span>
+      </a>
+
+      <button type="button" class="mobile-menu-btn" id="mobile-toggle" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      
+      <nav aria-label="Navegação principal">
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#lugares">Os Lugares</a></li>
+          <li><a href="#como-jogar">Como Jogar</a></li>
+          <li><a href="#game">O Game</a></li>
+          <li><a href="#questionario">Questionário</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#sobre">Sobre o Trabalho</a></li>
+        </ul>
+      </nav>
+
+      <a href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener" class="btn-primary header-cta-btn" style="padding: 0.5rem 1rem; font-size: 0.88rem;">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Jogar o game
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container shell-fade">
+        <div class="hero-unit-seal">
+          <span class="hero-seal-text">Projeto Educacional: Patrimônio Histórico</span>
+        </div>
+
+        <h1 class="hero-title">
+          Descubra os lugares que guardam a memória de Presidente Prudente
+        </h1>
+
+        <p class="hero-subtitle">
+          Explore os 8 lugares fundamentais para a identidade do município. Cada patrimônio possui uma história única e um botão exclusivo para você descobrir em detalhes como o local realmente é.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Jogar agora
+          </a>
+          <a href="#lugares" class="btn-secondary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            Ver os 8 lugares
+          </a>
+          <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=HjuebwkYSkSB04LUCpKIElUj2Gx8hOBAixB1xdHXjadUNlRYQkVLRDFYVE4yV0cyVktERkRaWkhIWC4u" target="_blank" rel="noopener" class="btn-orange">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Questionário Forms
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <span class="hero-highlight-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path></svg>
+            8 Patrimônios Selecionados
+          </span>
+          <span class="hero-highlight-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            Fatos Históricos Verificados
+          </span>
+          <span class="hero-highlight-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            Memória e Cidadania
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. OS 8 LUGARES SECTION -->
+    <section id="lugares" class="places-section">
+      <div class="section-header shell-fade">
+        <h2>Os 8 Lugares de Presidente Prudente</h2>
+        <p>Conheça os patrimônios fundamentais que guardam a história, a convivência e a memória viva da nossa comunidade.</p>
+      </div>
+
+      <div class="places-grid">
+        <!-- Card 1: Praça do Centenário -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+              </div>
+              <span class="category-badge">Memória Urbana</span>
+            </div>
+            <h3 class="place-title">Praça do Centenário</h3>
+            <p class="place-fact">
+              Inaugurada para comemorar os cem anos de fundação da cidade, reúne monumentos cívicos e espaços ajardinados que homenageiam a trajetória das famílias pioneiras.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="praca_centenario">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2: Praça Oscar Figueiredo Filho / Praça do Vale -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <span class="category-badge">Convivência</span>
+            </div>
+            <h3 class="place-title">Praça Oscar Figueiredo Filho (Praça do Vale)</h3>
+            <p class="place-fact">
+              Tradicional recanto no Vale do Sol, conhecida pelo convívio comunitário, arborização acolhedora e memórias do crescimento dos bairros prudentinos.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="praca_vale">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3: Centro Cultural Matarazzo -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </div>
+              <span class="category-badge">Cultura e Arte</span>
+            </div>
+            <h3 class="place-title">Centro Cultural Matarazzo</h3>
+            <p class="place-fact">
+              Antigo complexo industrial algodoeiro dos anos 1930 transformado em vibrante polo cultural com galerias, teatro Paulo Roberto Lisboa e ateliês públicos.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="matarazzo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4: Parque do Povo -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22v-8M12 14C8 14 5 11 5 7a7 7 0 0114 0c0 4-3 7-7 7z"></path></svg>
+              </div>
+              <span class="category-badge">Lazer e Ambiente</span>
+            </div>
+            <h3 class="place-title">Parque do Povo</h3>
+            <p class="place-fact">
+              O maior corredor verde e recreativo da cidade, estendendo-se por vales arborizados com pistas de caminhada, ciclovias e intensa vida comunitária ao ar livre.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="parque_povo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 5: Museu e Arquivo Histórico Prefeito Antônio Sandoval Netto -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <span class="category-badge">História e Acervo</span>
+            </div>
+            <h3 class="place-title">Museu e Arquivo Histórico Prefeito Antônio Sandoval Netto</h3>
+            <p class="place-fact">
+              Sediado no antigo matadouro de 1925, preserva dezenas de milhares de manuscritos, fotos raras, maquinários e relíquias que contam a história da fundação da cidade.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="museu">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 6: Balneário da Amizade -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
+              </div>
+              <span class="category-badge">Lazer e Natureza</span>
+            </div>
+            <h3 class="place-title">Balneário da Amizade</h3>
+            <p class="place-fact">
+              Importante refúgio hídrico na divisa com Álvares Machado, com represa, orla ajardinada, práticas náuticas e estrutura acolhedora para famílias nos fins de semana.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="balneario">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 7: Estação Ferroviária -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <span class="category-badge">Patrimônio Ferroviário</span>
+            </div>
+            <h3 class="place-title">Estação Ferroviária</h3>
+            <p class="place-fact">
+              Marco definitivo do progresso regional pela Estrada de Ferro Sorocabana inaugurada em 1919, que viabilizou o escoamento agrícola e a expansão urbana de Prudente.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="estacao_ferroviaria">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 8: Praça 9 de Julho -->
+        <article class="place-card shell-fade">
+          <div>
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <span class="category-badge">Centro Cívico</span>
+            </div>
+            <h3 class="place-title">Praça 9 de Julho</h3>
+            <p class="place-fact">
+              O coração cívico e afetivo do município, reunindo a Catedral de São Sebastião, a histórica fonte luminosa de 1952 e o monumento ao fundador Francisco de Paula Goulart.
+            </p>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-place-info" data-place-id="praca_nove_julho">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Como é o local
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO O GAME -->
+    <section id="game" class="interactive-section">
+      <div class="feature-card shell-fade">
+        <div class="feature-top">
+          <div class="feature-icon-badge" aria-hidden="true">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <div>
+            <span class="category-badge">Jogo Interativo</span>
+            <h2 class="feature-title">O Jogo da Memória</h2>
+          </div>
+        </div>
+
+        <div id="como-jogar">
+          <p class="feature-lead">
+            O participante deve combinar cada pista ao seu patrimônio correspondente para resgatar os marcos históricos de Presidente Prudente.
+          </p>
+
+          <p class="feature-desc">
+            Cada rodada apresenta desafios de memorização e conhecimento local: associe fatos históricos, fotos antigas e descrições dos 8 lugares emblemáticos da cidade. O objetivo é fortalecer a cidadania e o reconhecimento do nosso patrimônio coletivo de forma dinâmica e envolvente.
+          </p>
+        </div>
+
+        <!-- Bloco destacado: O Jogo da Memória com Estilo Senac -->
+        <div class="online-game-banner">
+          <h3>Missão Resgate: Game da Memória Online</h3>
+          <p>
+            A experiência completa do jogo está disponível em plataforma própria. Clique no botão abaixo para iniciar sua jornada de redescoberta histórica em nova janela.
+          </p>
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <a href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener" class="btn-game-highlight btn-large" style="text-decoration: none; border-radius: 8px; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700;">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Jogar o game
+            </a>
+            <span style="font-size: 0.88rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Abre https://prudente-memory-quest.base44.app em nova aba
+            </span>
+          </div>
+        </div>
+
+        <div class="feature-action-row">
+          <a href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Jogar agora
+          </a>
+          <span class="feature-meta">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            Aplicação interativa oficial do projeto escolar
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SEÇÃO QUESTIONÁRIO -->
+    <section id="questionario" class="interactive-section alt-bg">
+      <div class="feature-card alt-accent shell-fade">
+        <div class="feature-top">
+          <div class="feature-icon-badge" aria-hidden="true">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div>
+            <span class="category-badge" style="background-color: var(--senac-orange-soft); color: var(--senac-orange);">Avaliação e Reflexão</span>
+            <h2 class="feature-title">Questionário do Projeto</h2>
+          </div>
+        </div>
+
+        <p class="feature-lead">
+          Depois de conhecer os 8 lugares e jogar o game, o participante deve responder o questionário para registrar o que aprendeu sobre o patrimônio de Presidente Prudente.
+        </p>
+
+        <div>
+          <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=HjuebwkYSkSB04LUCpKIElUj2Gx8hOBAixB1xdHXjadUNlRYQkVLRDFYVE4yV0cyVktERkRaWkhIWC4u" target="_blank" rel="noopener" class="btn-orange btn-large">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Responder o questionário
+          </a>
+          <p style="margin: 0.95rem 0 0 0; font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            O questionário abre no Microsoft Forms e pode pedir login com a conta da escola.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO EQUIPE DO PROJETO -->
+    <section id="equipe" class="team-section">
+      <div class="section-header shell-fade">
+        <h2>Equipe do Projeto</h2>
+        <p>Estudantes responsáveis pelo desenvolvimento da pesquisa, produção de conteúdo e ambiente interativo do projeto escolar.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Integrante 1: José Luiz -->
+        <article class="team-card shell-fade">
+          <div class="team-avatar" aria-hidden="true">J</div>
+          <h3 class="team-name">José Luiz</h3>
+          <p class="team-role">Professor e Auxiliador</p>
+          <span class="team-badge">Orientação</span>
+        </article>
+
+        <!-- Integrante 2: Daniel Bachega -->
+        <article class="team-card shell-fade">
+          <div class="team-avatar" aria-hidden="true">D</div>
+          <h3 class="team-name">Daniel Bachega</h3>
+          <p class="team-role">Desenvolvedor e Pesquisador</p>
+          <span class="team-badge">Desenvolvimento</span>
+        </article>
+
+        <!-- Integrante 3: Ian Bonora -->
+        <article class="team-card shell-fade">
+          <div class="team-avatar" aria-hidden="true">I</div>
+          <h3 class="team-name">Ian Bonora</h3>
+          <p class="team-role">Pesquisador</p>
+          <span class="team-badge">Pesquisa</span>
+        </article>
+
+        <!-- Integrante 4: Lara Cristiane -->
+        <article class="team-card shell-fade">
+          <div class="team-avatar" aria-hidden="true">L</div>
+          <h3 class="team-name">Lara Cristiane</h3>
+          <p class="team-role">Pesquisadora e Ajudante</p>
+          <span class="team-badge">Pesquisa</span>
+        </article>
+
+        <!-- Integrante 5: Ana Julia -->
+        <article class="team-card shell-fade">
+          <div class="team-avatar" aria-hidden="true">A</div>
+          <h3 class="team-name">Ana Julia</h3>
+          <p class="team-role">Pesquisadora e Ajudante</p>
+          <span class="team-badge">Pesquisa</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. SEÇÃO SOBRE O TRABALHO -->
+    <section id="sobre" class="student-section">
+      <div class="student-card shell-fade">
+        <h2 style="margin: 0 0 0.5rem 0; font-size: 1.8rem;">Sobre o Trabalho Escolar</h2>
+        <p style="color: var(--text-muted); margin: 0 0 1.5rem 0; font-size: 1rem;">
+          Este trabalho tem como objetivo central valorizar e preservar o patrimônio cultural de Presidente Prudente, promovendo o sentimento de cidadania e despertando o interesse de estudantes e cidadãos pela história viva que compõe os espaços públicos da nossa cidade.
+        </p>
+
+        <!-- DADOS DO TRABALHO: editar informacoes de turma, docente e instituicao -->
+        <div class="student-grid">
+          <div class="info-item">
+            <div class="info-label">Instituição / Escola</div>
+            <!-- DADOS DO TRABALHO: preencher nome da instituicao de ensino -->
+            <div class="info-value">Senac EMED</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-label">Turma / Formação</div>
+            <!-- DADOS DO TRABALHO: preencher ano e turma -->
+            <div class="info-value">Primeiro ano do Ensino Médio</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-label">Disciplina / Área</div>
+            <!-- DADOS DO TRABALHO: preencher disciplina escolar -->
+            <div class="info-value">Projeto do Ano Letivo</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-label">Docente Orientador(a)</div>
+            <!-- DADOS DO TRABALHO: preencher nome do docente orientador -->
+            <div class="info-value">José Luiz</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-label">Unidade / Cidade</div>
+            <!-- DADOS DO TRABALHO: preencher cidade e estado -->
+            <div class="info-value">Presidente Prudente, São Paulo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 4. MODAL DE EXPLICAÇÃO COM NAVEGAÇÃO ANTERIOR/PRÓXIMO E INDICADOR -->
+  <div id="place-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-place-title">
+    <div class="modal-card" id="modal-card-content">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <div id="modal-place-icon" class="card-icon" style="width: 48px; height: 48px; flex-shrink: 0;" aria-hidden="true"></div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span id="modal-place-category" class="category-badge"></span>
+              <span id="modal-place-counter" class="modal-counter">Lugar 1 de 8</span>
+            </div>
+            <h3 id="modal-place-title" style="margin: 0.35rem 0 0; font-size: 1.35rem;"></h3>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" id="modal-close-x" aria-label="Fechar janela de detalhes">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p id="modal-place-explanation" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);"></p>
+        <div class="modal-context-box" id="modal-place-context"></div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-nav-group">
+          <button type="button" class="btn-modal-nav" id="modal-prev-btn" aria-label="Lugar anterior">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Anterior
+          </button>
+          <button type="button" class="btn-modal-nav" id="modal-next-btn" aria-label="Próximo lugar">
+            Próximo
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <button type="button" class="btn-primary" id="modal-close-btn" style="padding: 0.55rem 1.25rem;">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. RODAPÉ INSTITUCIONAL -->
+  <footer class="site-footer">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <p style="margin: 0 0 0.4rem 0; font-weight: 700; font-size: 1.25rem; color: #FFFFFF; font-family: var(--font-heading);">
+        Memórias de Prudente
+      </p>
+      <p style="margin: 0 0 0.75rem 0; font-weight: 600; font-size: 0.95rem; color: var(--senac-orange-light);">
+        Projeto do Ano Letivo: Missão Resgate e Lugares de Presidente Prudente
+      </p>
+      <p style="margin: 0 0 0.85rem 0; color: #E0E7FF; font-size: 0.92rem;">
+        Equipe: José Luiz, Daniel Bachega, Ian Bonora, Lara Cristiane e Ana Julia.
+      </p>
+      <p style="margin: 0 0 0.85rem 0; color: #CBD5E1; font-size: 0.86rem;">
+        Ano Letivo 2026: Conteúdo fundamentado em pesquisas históricas e acervos municipais.
+      </p>
+      <p style="margin: 0; font-size: 0.8rem; color: #94A3B8;">
+        Dedicado à salvaguarda, difusão e cidadania em torno do patrimônio histórico de Presidente Prudente.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS DO PROJETO -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // DADOS VERIFICADOS DOS 8 LUGARES REQUISITADOS
+      const placesData = {
+        praca_centenario: {
+          id: 'praca_centenario',
+          name: 'Praça do Centenário',
+          category: 'Memória Urbana',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>',
+          explanation: 'Como é o local: A Praça do Centenário foi concebida para eternizar o marco dos 100 anos de história de Presidente Prudente. Situada em ponto estratégico integrado ao Parque do Povo, reúne monumentos comemorativos, áreas gramadas, bancos para descanso e caminhos pavimentados que recebem famílias, estudantes e caminhantes. O espaço combina a reverência aos pioneiros com o uso cotidiano comunitário.',
+          context: 'Motivo de preservação: Simboliza a passagem secular da fundação da cidade e homenageia o esforço coletivo que transformou os sertões no polo do Oeste Paulista.'
+        },
+        praca_vale: {
+          id: 'praca_vale',
+          name: 'Praça Oscar Figueiredo Filho (Praça do Vale)',
+          category: 'Convivência Comunitária',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+          explanation: 'Como é o local: A Praça Oscar Figueiredo Filho, carinhosamente chamada de Praça do Vale, é um ponto de encontro tradicional situado no Vale do Sol. Caracteriza-se por sua arborização densa com espécies nativas, recantos com sombras acolhedoras, espaço para brincadeiras infantis e pista de convivência onde os moradores do bairro se reúnem diariamente para conversar e praticar exercícios.',
+          context: 'Motivo de preservação: Exemplo vivo de praça de bairro que preserva a identidade afetiva e o convívio saudável entre vizinhos ao longo das décadas.'
+        },
+        matarazzo: {
+          id: 'matarazzo',
+          name: 'Centro Cultural Matarazzo',
+          category: 'Cultura e Arte',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>',
+          explanation: 'Como é o local: O Centro Cultural Matarazzo ocupa o majestoso complexo arquitetônico construído na década de 1930 para o beneficiamento de algodão pelas Indústrias Reunidas Francisco Matarazzo. Restaurado com maestria pela municipalidade, hoje abriga o Teatro Paulo Roberto Lisboa, cinema, biblioteca pública, pinacoteca, ateliês de formação musical e salas multiuso com eventos gratuitos durante todo o ano.',
+          context: 'Motivo de preservação: Patrimônio industrial transformado em templo da cultura pública, preservando a memória fabril enquanto fomenta novas expressões artísticas.'
+        },
+        parque_povo: {
+          id: 'parque_povo',
+          name: 'Parque do Povo',
+          category: 'Lazer e Ambiente',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22v-8M12 14C8 14 5 11 5 7a7 7 0 0114 0c0 4-3 7-7 7z"></path></svg>',
+          explanation: 'Como é o local: O Parque do Povo é o principal cartão-postal contemporâneo e pulmão ecológico da cidade. Desenvolvido ao longo do vale fundo com quilômetros de extensão, oferece ciclovias, academias ao ar livre, quadras de areia e grama, lago com pontes e ampla arborização. É o endereço diário de milhares de praticantes de caminhada e esportes ao ar livre.',
+          context: 'Motivo de preservação: Essencial para a drenagem urbana equilibrada, conforto microclimático e saúde física da população prudentina.'
+        },
+        museu: {
+          id: 'museu',
+          name: 'Museu e Arquivo Histórico Prefeito Antônio Sandoval Netto',
+          category: 'História e Acervo',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>',
+          explanation: 'Como é o local: O museu ocupa a edificação erguida em 1925 que originalmente abrigou o Matadouro Municipal. Suas sólidas paredes de alvenaria guardam mais de 70 mil documentos históricos, coleções fotográficas raras dos tempos do desbravamento, vestimentas de época, ferramentas agrícolas e uma biblioteca dedicada à história regional com atendimento a pesquisadores.',
+          context: 'Motivo de preservação: Principal repositório de fontes primárias da história prudentina, fundamental para a memória escolar e acadêmica de toda a região.'
+        },
+        balneario: {
+          id: 'balneario',
+          name: 'Balneário da Amizade',
+          category: 'Lazer e Natureza',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>',
+          explanation: 'Como é o local: O Balneário da Amizade é uma ampla área de lazer hídrico situada na divisa entre Presidente Prudente e Álvares Machado. Conta com espelho d\'água proveniente de represamento, orla urbanizada com calçadão para caminhadas, quiosques sombreados, áreas para esportes de areia e ambiente acolhedor para alívio nos dias de calor característicos do interior.',
+          context: 'Motivo de preservação: Patrimônio ambiental e hídrico compartilhado que celebra a cooperação entre municípios e o direito ao lazer público.'
+        },
+        estacao_ferroviaria: {
+          id: 'estacao_ferroviaria',
+          name: 'Estação Ferroviária de Presidente Prudente',
+          category: 'Patrimônio Ferroviário',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>',
+          explanation: 'Como é o local: A Estação Ferroviária da antiga Estrada de Ferro Sorocabana (EFS), inaugurada em 1919, preserva sua plataforma histórica, bilheteria, armazéns e a linha férrea original que corta o centro. O local carrega a atmosfera inconfundível do apito dos trens a vapor e do intenso movimento de passageiros e fardos de café e algodão que impulsionaram o nascimento da cidade.',
+          context: 'Motivo de preservação: Marco decisivo do nascimento econômico e territorial de Prudente, sem o qual o povoamento do sertão não teria ocorrido com tanta rapidez.'
+        },
+        praca_nove_julho: {
+          id: 'praca_nove_julho',
+          name: 'Praça 9 de Julho',
+          category: 'Centro Cívico',
+          iconSvg: '<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
+          explanation: 'Como é o local: A Praça 9 de Julho é o verdadeiro centro cívico de Presidente Prudente. Localizada em frente à imponente Catedral de São Sebastião, abriga a famosa fonte luminosa inaugurada em 1952, o monumento sepulcral do pioneiro Francisco de Paula Goulart, bancos à sombra de frondosas árvores e os tradicionais pontos de encontro de moradores e comerciantes.',
+          context: 'Motivo de preservação: Berço histórico cívico, marco zero do traçado urbano e principal referência de identidade do povo prudentino.'
+        }
+      };
+
+      // LISTA ORDENADA DOS 8 LUGARES PARA NAVEGAÇÃO
+      const placeKeys = [
+        'praca_centenario',
+        'praca_vale',
+        'matarazzo',
+        'parque_povo',
+        'museu',
+        'balneario',
+        'estacao_ferroviaria',
+        'praca_nove_julho'
+      ];
+
+      let currentPlaceIndex = 0;
+
+      // ELEMENTOS DO MODAL
+      const modal = document.getElementById('place-modal');
+      const modalCloseX = document.getElementById('modal-close-x');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const modalTitle = document.getElementById('modal-place-title');
+      const modalCategory = document.getElementById('modal-place-category');
+      const modalCounter = document.getElementById('modal-place-counter');
+      const modalIcon = document.getElementById('modal-place-icon');
+      const modalExplanation = document.getElementById('modal-place-explanation');
+      const modalContext = document.getElementById('modal-place-context');
+      const modalPrevBtn = document.getElementById('modal-prev-btn');
+      const modalNextBtn = document.getElementById('modal-next-btn');
+      let lastFocusedElement = null;
+
+      // ATUALIZA CONTEÚDO DO MODAL CONFORME ÍNDICE ATUAL
+      function renderPlaceAtIndex(index) {
+        if (index < 0) index = 0;
+        if (index >= placeKeys.length) index = placeKeys.length - 1;
+        currentPlaceIndex = index;
+
+        const placeKey = placeKeys[currentPlaceIndex];
+        const place = placesData[placeKey];
+        if (!place) return;
+
+        modalTitle.textContent = place.name;
+        modalCategory.textContent = place.category;
+        modalCounter.textContent = `Lugar ${currentPlaceIndex + 1} de ${placeKeys.length}`;
+        modalIcon.innerHTML = place.iconSvg;
+        modalExplanation.textContent = place.explanation;
+        modalContext.textContent = place.context;
+
+        // Atualiza estado dos botões Anterior e Próximo
+        modalPrevBtn.disabled = (currentPlaceIndex === 0);
+        modalNextBtn.disabled = (currentPlaceIndex === placeKeys.length - 1);
+      }
+
+      // FUNÇÃO PARA ABRIR O MODAL
+      function openPlaceModal(placeId) {
+        const foundIndex = placeKeys.indexOf(placeId);
+        if (foundIndex === -1) return;
+
+        lastFocusedElement = document.activeElement;
+        renderPlaceAtIndex(foundIndex);
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        modalCloseBtn.focus();
+      }
+
+      // FUNÇÃO PARA FECHAR O MODAL
+      function closePlaceModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      }
+
+      // NAVEGAÇÃO ANTERIOR E PRÓXIMO
+      modalPrevBtn.addEventListener('click', () => {
+        if (currentPlaceIndex > 0) {
+          renderPlaceAtIndex(currentPlaceIndex - 1);
+        }
+      });
+
+      modalNextBtn.addEventListener('click', () => {
+        if (currentPlaceIndex < placeKeys.length - 1) {
+          renderPlaceAtIndex(currentPlaceIndex + 1);
+        }
+      });
+
+      // ATIVAÇÃO INTERATIVA DOS CARDS E BOTÕES "COMO É O LOCAL"
+      document.querySelectorAll('.place-card').forEach(card => {
+        const btn = card.querySelector('[data-place-id]');
+        if (btn) {
+          const placeId = btn.getAttribute('data-place-id');
+          card.addEventListener('click', (e) => {
+            openPlaceModal(placeId);
+          });
+        }
+      });
+
+      document.querySelectorAll('[data-place-id]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          const placeId = btn.getAttribute('data-place-id');
+          openPlaceModal(placeId);
+        });
+      });
+
+      // EVENTOS DE FECHAMENTO DO MODAL
+      modalCloseX.addEventListener('click', closePlaceModal);
+      modalCloseBtn.addEventListener('click', closePlaceModal);
+      
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closePlaceModal();
+        }
+      });
+
+      // NAVEGAÇÃO POR TECLADO (ESC, SETAS ESQUERDA E DIREITA)
+      document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+          closePlaceModal();
+        } else if (e.key === 'ArrowLeft') {
+          if (currentPlaceIndex > 0) renderPlaceAtIndex(currentPlaceIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          if (currentPlaceIndex < placeKeys.length - 1) renderPlaceAtIndex(currentPlaceIndex + 1);
+        }
+      });
+
+      // MENU MOBILE TOGGLE
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+          const isOpen = navMenu.classList.toggle('active');
+          mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // HEADER COM BLUR AO ROLAR
+      const siteHeader = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) {
+          siteHeader.classList.add('scrolled');
+        } else {
+          siteHeader.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // REVEAL ON SCROLL COM INTERSECTION OBSERVER E EFEITO ESCALONADO (STAGGER)
+      const fadeElements = document.querySelectorAll('.shell-fade');
+      
+      // Aplica delays suaves em sequencia para caixas e grids
+      document.querySelectorAll('.places-grid, .team-grid').forEach(grid => {
+        const children = grid.querySelectorAll('.shell-fade');
+        children.forEach((child, index) => {
+          child.style.transitionDelay = `${(index % 4) * 0.08}s`;
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        fadeElements.forEach(el => observer.observe(el));
+      } else {
+        fadeElements.forEach(el => el.classList.add('visible'));
+      }
+    });
+  </script>
+<script>
+/* Skip artifact shell — fixed helpers served beside every artifact. */
+(function () {
+  "use strict";
+
+  var fmt = {
+    num: function (v, opts) { return new Intl.NumberFormat("pt-BR", opts || {}).format(v); },
+    brl: function (v) { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v); },
+    pct: function (v) { return new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 1 }).format(v); }
+  };
+
+  // axisFmt keeps axis tick labels short (compact notation) so long values
+  // (e.g. full BRL amounts) never clip against the plot edge.
+  function axisFmt(v) {
+    return fmt.num(v, { notation: "compact", maximumFractionDigits: 1 });
+  }
+
+  // format accepts a function OR one of the fmt names ("num" | "brl" | "pct").
+  function coerceFormat(spec) {
+    if (typeof spec === "function") return spec;
+    if (typeof spec === "string" && fmt[spec]) return fmt[spec];
+    return function (v) { return fmt.num(v); };
+  }
+
+  function accent() {
+    return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#2563eb";
+  }
+  function mutedColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue("--text-muted").trim() || "#5b6472";
+  }
+  function svgEl(tag, attrs) {
+    var el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+  function frame(el, w, h) {
+    var svg = svgEl("svg", { viewBox: "0 0 " + w + " " + h, role: "img" });
+    el.innerHTML = "";
+    el.appendChild(svg);
+    return svg;
+  }
+
+  // maxOf guards the axis scale: empty values would give -Infinity (truthy,
+  // so "|| 1" can't catch it) and a non-positive max would flip the chart.
+  function maxOf(values) {
+    var m = values.length ? Math.max.apply(null, values) : 0;
+    return m > 0 ? m : 1;
+  }
+
+  // bar(el, {labels:[], values:[], color?, format?}) — vertical bar chart.
+  function bar(el, cfg) {
+    var W = 640, H = 280, padL = 46, padB = 30, padT = 12;
+    var svg = frame(el, W, H);
+    var max = maxOf(cfg.values);
+    var n = cfg.values.length;
+    var plotW = W - padL - 12, plotH = H - padT - padB;
+    var step = plotW / n, bw = Math.min(step * 0.62, 64);
+    var color = cfg.color || accent();
+    var f = coerceFormat(cfg.format);
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + plotH - (plotH * g) / 4;
+      svg.appendChild(svgEl("line", { x1: padL, y1: gy, x2: W - 12, y2: gy, stroke: "currentColor", "stroke-opacity": 0.08 }));
+      var lbl = svgEl("text", { x: padL - 8, y: gy + 4, "text-anchor": "end", "font-size": 10, fill: mutedColor() });
+      lbl.textContent = axisFmt((max * g) / 4);
+      svg.appendChild(lbl);
+    }
+    cfg.values.forEach(function (v, i) {
+      var bh = Math.max(0, (v / max) * plotH);
+      var x = padL + i * step + (step - bw) / 2;
+      var y = padT + plotH - bh;
+      var r = svgEl("rect", { x: x, y: y, width: bw, height: bh, rx: 4, fill: color });
+      var t = svgEl("title", {});
+      t.textContent = cfg.labels[i] + ": " + f(v);
+      r.appendChild(t);
+      svg.appendChild(r);
+      var tx = svgEl("text", { x: x + bw / 2, y: H - 10, "text-anchor": "middle", "font-size": 11, fill: mutedColor() });
+      tx.textContent = cfg.labels[i];
+      svg.appendChild(tx);
+    });
+  }
+
+  // line(el, {labels:[], values:[], color?, format?}) — single-series line.
+  function line(el, cfg) {
+    var W = 640, H = 280, padL = 46, padB = 30, padT = 12;
+    var svg = frame(el, W, H);
+    var max = maxOf(cfg.values);
+    var n = cfg.values.length;
+    var plotW = W - padL - 16, plotH = H - padT - padB;
+    var color = cfg.color || accent();
+    var f = coerceFormat(cfg.format);
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + plotH - (plotH * g) / 4;
+      svg.appendChild(svgEl("line", { x1: padL, y1: gy, x2: W - 16, y2: gy, stroke: "currentColor", "stroke-opacity": 0.08 }));
+      var lbl = svgEl("text", { x: padL - 8, y: gy + 4, "text-anchor": "end", "font-size": 10, fill: mutedColor() });
+      lbl.textContent = axisFmt((max * g) / 4);
+      svg.appendChild(lbl);
+    }
+    var pts = cfg.values.map(function (v, i) {
+      var x = padL + (n === 1 ? plotW / 2 : (plotW * i) / (n - 1));
+      var y = padT + plotH - (v / max) * plotH;
+      return [x, y];
+    });
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+    svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: color, "stroke-width": 2, "stroke-linejoin": "round" }));
+    pts.forEach(function (p, i) {
+      var c = svgEl("circle", { cx: p[0], cy: p[1], r: 3.5, fill: color });
+      var t = svgEl("title", {});
+      t.textContent = cfg.labels[i] + ": " + f(cfg.values[i]);
+      c.appendChild(t);
+      svg.appendChild(c);
+      var tx = svgEl("text", { x: p[0], y: H - 10, "text-anchor": "middle", "font-size": 11, fill: mutedColor() });
+      tx.textContent = cfg.labels[i];
+      svg.appendChild(tx);
+    });
+  }
+
+  // donut(el, {labels:[], values:[], colors?}) — donut with center total.
+  function donut(el, cfg) {
+    var W = 320, H = 280, cx = W / 2, cy = H / 2, R = 92, r = 58;
+    var svg = frame(el, W, H);
+    var total = cfg.values.reduce(function (a, b) { return a + b; }, 0) || 1;
+    var palette = cfg.colors || [accent(), "#1baf7a", "#eda100", "#e34948", "#4a3aa7", "#e87ba4"];
+    var a0 = -Math.PI / 2;
+    cfg.values.forEach(function (v, i) {
+      var a1 = a0 + (v / total) * Math.PI * 2;
+      var large = a1 - a0 > Math.PI ? 1 : 0;
+      var p = ["M", cx + R * Math.cos(a0), cy + R * Math.sin(a0),
+        "A", R, R, 0, large, 1, cx + R * Math.cos(a1), cy + R * Math.sin(a1),
+        "L", cx + r * Math.cos(a1), cy + r * Math.sin(a1),
+        "A", r, r, 0, large, 0, cx + r * Math.cos(a0), cy + r * Math.sin(a0), "Z"].join(" ");
+      var path = svgEl("path", { d: p, fill: palette[i % palette.length] });
+      var t = svgEl("title", {});
+      t.textContent = cfg.labels[i] + ": " + fmt.num(v) + " (" + fmt.pct(v / total) + ")";
+      path.appendChild(t);
+      svg.appendChild(path);
+      a0 = a1;
+    });
+    var center = svgEl("text", { x: cx, y: cy + 5, "text-anchor": "middle", "font-size": 20, "font-weight": 650, fill: "currentColor" });
+    center.textContent = fmt.num(total);
+    svg.appendChild(center);
+  }
+
+  window.skipShell = { fmt: fmt };
+  window.skipChart = { bar: bar, line: line, donut: donut };
+})();
+
+</script>
+</body>
+</html>
