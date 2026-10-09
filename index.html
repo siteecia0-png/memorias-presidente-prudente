@@ -2178,5 +2178,29 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
 })();
 
 </script>
+
+<script>
+  // Scroll suave do mouse (Lenis-style, sem dependências)
+  (function () {
+    var raf = window.requestAnimationFrame;
+    var target = 0, current = 0, ease = 0.08;
+
+    function onScroll() {
+      target = window.scrollY || window.pageYOffset;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    function animate() {
+      current += (target - current) * ease;
+      window.scrollTo(0, current);
+      if (Math.abs(target - current) > 0.5) {
+        raf(animate);
+      } else {
+        current = target;
+      }
+    }
+    raf(animate);
+  })();
+</script>
 </body>
 </html>
