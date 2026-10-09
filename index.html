@@ -18,7 +18,49 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
   
   <!-- Shell CSS -->
-  <style>
+  <style>/* ===== Botão com estrelinhas (Memórias de Prudente) ===== */
+.star-btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 35px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #181818;
+  background-color: #fec195;
+  border: 3px solid #fec195;
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.star-btn:hover {
+  background: transparent;
+  color: #fec195;
+  box-shadow: 0 0 25px rgba(254, 193, 149, 0.55);
+}
+.star-btn:active { transform: scale(0.95); }
+.star { position: absolute; width: 20px; z-index: -5; opacity: 0; }
+.star-btn:hover .star { opacity: 1; z-index: 2; }
+
+.star-1 { top: 20%; left: 20%; width: 25px; transition: all 1s cubic-bezier(0.05,0.83,0.43,0.96); }
+.star-btn:hover .star-1 { top: -80%; left: -30%; filter: drop-shadow(0 0 10px #fec195); }
+
+.star-2 { top: 45%; left: 45%; width: 15px; transition: all 1s cubic-bezier(0,0.4,0,1.01); }
+.star-btn:hover .star-2 { top: -25%; left: 10%; filter: drop-shadow(0 0 10px #fec195); }
+
+.star-3 { top: 40%; left: 40%; width: 5px; transition: all 1s cubic-bezier(0,0.4,0,1.01); }
+.star-btn:hover .star-3 { top: 55%; left: 25%; filter: drop-shadow(0 0 10px #fec195); }
+
+.star-4 { top: 20%; left: 40%; width: 8px; transition: all 0.8s cubic-bezier(0,0.4,0,1.01); }
+.star-btn:hover .star-4 { top: 30%; left: 80%; filter: drop-shadow(0 0 10px #fec195); }
+
+.star-5 { top: 25%; left: 45%; width: 15px; transition: all 0.6s cubic-bezier(0,0.4,0,1.01); }
+.star-btn:hover .star-5 { top: 25%; left: 115%; filter: drop-shadow(0 0 10px #fec195); }
+
+.star-6 { top: 5%; left: 50%; width: 5px; transition: all 0.8s ease-in-out; }
+.star-btn:hover .star-6 { top: 5%; left: 60%; filter: drop-shadow(0 0 10px #fec195); }
 /* Skip artifact shell — fixed styles served beside every artifact.
    Complements basecoat; artifacts override --accent for their own identity. */
 :root {
@@ -1275,10 +1317,15 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
         </p>
 
         <div class="hero-actions">
-          <a href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener" class="btn-primary">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            Jogar agora
-          </a>
+          <a class="star-btn" href="https://prudente-memory-quest.base44.app" target="_blank" rel="noopener">
+  Jogar
+  <span class="star star-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+  <span class="star star-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+  <span class="star star-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+  <span class="star star-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+  <span class="star star-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+  <span class="star star-6"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path fill="#fec195" d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg></span>
+</a>
           <a href="#lugares" class="btn-secondary">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
             Ver os 8 lugares
