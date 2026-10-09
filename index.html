@@ -2183,7 +2183,7 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
   // Scroll suave do mouse (Lenis-style, sem dependências)
   (function () {
     var raf = window.requestAnimationFrame;
-    var target = 0, current = 0, ease = 0.08;
+    var target = 0, current = 0, ease = 0.02;
 
     function onScroll() {
       target = window.scrollY || window.pageYOffset;
